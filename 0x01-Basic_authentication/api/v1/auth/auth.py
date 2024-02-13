@@ -15,9 +15,11 @@ class Auth():
             return False
         return True
 
-    def authorization_header(self, request=None) -> str:
-        """ Will be Implemented """
-        return None
+    def authorization_header(self, request: request = None) -> str:
+        """ Request validation """
+        if request is None or 'Authorization' not in request.headers:
+            return None
+        return request.headers['Authorization']
 
     def current_user(self, request=None) -> TypeVar('User'):
         """ Will be Implemented """

@@ -8,10 +8,13 @@ class Auth():
     """ a class to manage the API authentication """
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
+        """ Will be Implemented """
         return False
 
     def authorization_header(self, request=None) -> str:
+        """ Will be Implemented """
         return None
 
     def current_user(self, request=None) -> TypeVar('User'):
+        """ Will be Implemented """
         return None

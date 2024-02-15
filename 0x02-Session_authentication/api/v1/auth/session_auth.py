@@ -2,7 +2,6 @@
 """ SessionAuth Class """
 from api.v1.auth.auth import Auth
 from uuid import uuid4
-# from typing import TypeVar
 from models.user import User
 
 
@@ -40,3 +39,19 @@ class SessionAuth(Auth):
             return None
 
         return (User.get(user_id))
+
+    def destroy_session(self, request=None):
+        """ deletes the user session / logout """
+        if request is None:
+            return False
+
+        session_cookie_value = self.session_cookie(request)
+        if session_cookie_value is None:
+            return False
+
+        if self.user_id_for_session_id(session_cookie_value) is None:
+            return False
+
+        del self.user_id_by_session_id[session_cookie_value]
+
+        return True

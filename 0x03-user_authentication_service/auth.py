@@ -35,3 +35,9 @@ class Auth:
                                   user.hashed_password)
         except Exception:
             return False
+
+    def _generate_uuid(self) -> str:
+        """Generate UUID"""
+        import uuid
+
+        return str(uuid.uuid4())

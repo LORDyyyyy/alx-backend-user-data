@@ -78,7 +78,7 @@ def get_reset_password_token():
     """POST /reset_password
     generates a token
     """
-    email = request.form.email
+    email = request.form.get("email")
     try:
         reset_token = AUTH.get_reset_password_token(email)
         return jsonify({"email": email, "reset_token": reset_token}), 200

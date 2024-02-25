@@ -5,8 +5,6 @@ from auth import Auth
 
 AUTH = Auth()
 
-
-
 app = Flask(__name__)
 
 
@@ -44,14 +42,14 @@ def login():
     session_id = AUTH.create_session(email)
 
     out = jsonify(email=email, message="logged in")
-    out.set_cookie('session_id', session_id)
+    out.set_cookie("session_id", session_id)
     return out
 
 
 @app.route("/sessions", methods=["DELETE"])
 def logout():
     """DELETE /sessions"""
-    session_id = request.cookies.get('session_id')
+    session_id = request.cookies.get("session_id")
     try:
         user = AUTH.get_user_from_session_id(session_id)
         if user is None:
@@ -59,13 +57,13 @@ def logout():
         AUTH.destroy_session(user.id)
     except Exception:
         abort(403)
-    return redirect('/')
+    return redirect("/")
 
 
 @app.route("/profile", methods=["GET"])
 def profile():
     """GET /profile"""
-    session_id = request.cookies.get('session_id')
+    session_id = request.cookies.get("session_id")
     try:
         user = AUTH.get_user_from_session_id(session_id)
         if user is None:

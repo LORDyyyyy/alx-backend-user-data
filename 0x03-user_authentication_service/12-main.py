@@ -1,7 +1,7 @@
 from auth import Auth
 
 email = 'bob@bob.com'
-password = 'MyPwdOfBob'
+password = 'mySuperPwd'
 auth = Auth()
 
 auth.register_user(email, password)

@@ -14,7 +14,7 @@ def _hash_password(password: str) -> bytes:
     return hash
 
 
-def _generate_uuid(self) -> str:
+def _generate_uuid() -> str:
     """ Generate UUID """
 
     return str(uuid4())
@@ -42,3 +42,14 @@ class Auth:
                                   user.hashed_password)
         except Exception:
             return False
+
+    def create_session(self, email: str) -> str:
+        """ Returns the session ID as a string """
+
+        try:
+            user_id = self._db.find_user_by(email=email).id
+            session_id = _generate_uuid()
+            self._db.update_user(user_id, session_id=session_id)
+            return session_id
+        except Exception:
+            return None

@@ -53,7 +53,7 @@ class DB:
             for k, v in kwargs.items():
                 if k not in User.__dict__:
                     raise ValueError
-                user.k = v
+                setattr(user, k, v)
             self._session.commit()
         except (NoResultFound, InvalidRequestError):
             raise ValueError

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """ Auth """
 import bcrypt
+import uuid
 from db import DB
 from user import User
 
@@ -38,6 +39,4 @@ class Auth:
 
     def _generate_uuid(self) -> str:
         """Generate UUID"""
-        import uuid
-
         return str(uuid.uuid4())
